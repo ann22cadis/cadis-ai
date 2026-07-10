@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расширения | Cadis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn" title="На главную">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+        </a>
+    </header>
+
+    <section id="extensions" class="section page-section">
+        <div class="section-header">
+            <h2>Расширения</h2>
+        </div>
+        <div class="grid extensions-grid">
+            
+            <div class="card glass">
+                <h3>Dreamweaver</h3>
+                <p>Мощный сюжетный пульт управления. Позволяет прямо во время игры в пару кликов менять сеттинг (AU), добавлять тропы, фетиши и жанры без ручного ввода промптов.</p>
+                
+                <div class="extension-details" id="dreamweaver-details">
+                    <img src="img/extensions/dreamweaver.png" alt="Интерфейс Dreamweaver" class="extension-img dreamweaver-img">
+                    
+                    <div class="extension-text">
+                        <p><strong>Само расширение находится в "Волшебной палочке"</strong>, там, где вы пишете свои сообщения.</p>
+                        
+                        <p><strong>Быстрый сброс:</strong> все выбранные теги красиво отображаются внизу панели. Не нужно искать их по вкладкам, чтобы отключить — просто тыкаете на тег в списке, и он удаляется.</p>
+                        
+                        <h4>Верхние кнопки:</h4>
+                        <ul>
+                            <li><strong>Выбор персонажа:</strong> в групповых чатах можно добавить тег «Глобально» на весь чат (например, жанр фэнтези), а можно выбрать конкретного бота и повесить тег только на него (например, сделать его тайно Protective к вам).</li>
+                            <li><strong>Вкл/выкл:</strong> банально, но расширение можно выключить.</li>
+                            <li><strong>Книга:</strong> если включить, то добавляет коротенькое объяснение каждому тегу.</li>
+                        </ul>
+                        
+                        <h4>Нижние кнопки:</h4>
+                        <ul>
+                            <li><strong>Глубина:</strong> Цифра, которая отвечает за то, насколько глубоко в память ИИ засядут эти правила.</li>
+                        </ul>
+                        
+                        <h4>Что внутри?</h4>
+                        <ul class="features-list">
+                            <li><span>🌌</span> <div><strong>AU:</strong> Омегаверс, соулмейты, вампиры, кицунэ, эпоха возрождения или постапокалипсис.</div></li>
+                            <li><span>📜</span> <div><strong>Правила мира:</strong> задаем атмосферу — будь то тоталитаризм, запрещенная магия или сектантство.</div></li>
+                            <li><span>🎭</span> <div><strong>Жанр:</strong> от лампового Slice of Life и милого Shoujo до жесткого Horror, драмы и эротики.</div></li>
+                            <li><span>😈</span> <div><strong>Поведение:</strong> заставляем бота быть заботливой мамочкой, ревнивым психом или милой булочкой.</div></li>
+                            <li><span>📖</span> <div><strong>Сюжетные тропы:</strong> всеми любимые «от врагов к возлюбленным», «одна кровать», «любовный треугольник» и так далее.</div></li>
+                            <li><span>🖋️</span> <div><strong>Стиль и формат:</strong> стиль написания текста. Стилей мало, потому что я этим особо не пользуюсь, но вы можете что-нибудь предложить или добавить самостоятельно.</div></li>
+                            <li><span>⛓️</span> <div><strong>Фетиши:</strong> небольшой список фетишей, которые можно добавить персонажу.</div></li>
+                            <li><span>🔞</span> <div><strong>Цензура:</strong> выбор рейтинга для вашей РП: SFW, NSFW, Extreme Gore, Pure Smut.</div></li>
+                            <li><span>⚙️</span> <div><strong>Кастом:</strong> если готовых тегов мало, в этом разделе вы можете добавить свои промпты. Есть дополнительная кнопка с большим окном для ввода текста.</div></li>
+                        </ul>
+                        
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <a href="javascript:void(0)" class="btn btn-primary cadis-copy-btn" data-clipboard-text="https://github.com/ann22cadis/dreamweaver-extension" style="width: 100%;">Скопировать ссылку для установки</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-buttons">
+                    <a href="javascript:void(0)" class="btn btn-small btn-primary cadis-copy-btn" data-clipboard-text="https://github.com/ann22cadis/dreamweaver-extension">Копировать ссылку</a>
+                    <a href="javascript:void(0)" class="btn btn-small btn-primary toggle-details-btn" data-target="dreamweaver-details">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="card glass">
+                <h3>DreamAlbum</h3>
+                <p>Превращает хаос из генераций картинок в эстетичную галерею и добавляет полезные инструменты прямо в интерфейс чата.</p>
+                
+                <div class="extension-details" id="dreamalbum-details">
+                    <img src="img/extensions/dreamalbum.png" alt="Интерфейс DreamAlbum" class="extension-img">
+                    
+                    <div class="extension-text">
+                        <p><strong>Для чего это нужно?</strong> Если вы активно генерируете арты прямо в чатах ST, то знаете, как легко потерять классную картинку среди десятков сообщений. DreamAlbum решает эту проблему!</p>
+                        
+                        <p style="margin-bottom: 1.5rem; color: var(--accent-silver);"><em>Примечание: расширение создано на основе <a href="https://gitgud.io/Monblant/extblocks" target="_blank" style="color: var(--accent-pink); text-decoration: underline; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">extblocks</a>.</em></p>
+                        
+                        <h4>Главные фичи:</h4>
+                        <ul class="features-list">
+                            <li><span>🖼️</span> <div><strong>Единая галерея (Альбом):</strong> Все изображения из чата собираются в красивой сетке. Доступен полноэкранный просмотр, зум, свайп и поворот.</div></li>
+                            <li><span>✨</span> <div><strong>Интерактивные блоки:</strong> При наведении на картинку появляются кнопки: развернуть, скопировать/отредактировать промпт, перегенерировать или удалить.</div></li>
+                            <li><span>🎨</span> <div><strong>Плавающие стили:</strong> Настройте любимые промпты и генерируйте арты в один клик плавающими кнопками (можно связать с MoodTube!). Долгое нажатие открывает ввод своего запроса.</div></li>
+                            <li><span>🌈</span> <div><strong>Темы оформления:</strong> 6 встроенных тем альбома (Розовая, Сумерки, Темный лес, Океан, Затмение) и автоматическая подстройка под вашу тему ST.</div></li>
+                            <li><span>👻</span> <div><strong>Скрытые фото:</strong> Неудачные генерации можно скрыть из основной сетки (возвращаются долгим нажатием).</div></li>
+                            <li><span>🔍</span> <div><strong>Умный просмотр:</strong> Удобный просмотр и копирование оригинального промпта от любой картинки.</div></li>
+                            <li><span>💬</span> <div><strong>Кнопка «В чат»:</strong> Быстрый прыжок к сообщению, где была создана картинка, чтобы освежить в памяти сюжет.</div></li>
+                            <li><span>🛡️</span> <div><strong>Чистый контекст:</strong> Блоки генераций внешние — они не попадают в контекст РП и экономят ваши токены, чат чистить не придется!</div></li>
+                            <li><span>⚙️</span> <div><strong>Гибкость:</strong> Настройка или отключение кнопок на картинках, поддержка спиннера загрузки вашего расширения.</div></li>
+                        </ul>
+                        
+                        <h4>Важно знать:</h4>
+                        <ul>
+                            <li>Обязательно включите <strong>«Внешние блоки»</strong> в вашем расширении для генерации изображений. (Необязательно, если используете только как альбом).</li>
+                            <li>В стиль вставляйте свой полный тоггл для генерации <strong>без лишних CSS/HTML</strong> (с выводом только <code>&lt;img&gt;</code>).</li>
+                            <li>Кнопка «Удалить» работает только для новых блоков DreamAlbum. Старые картинки в тексте удалить нельзя.</li>
+                            <li>Ищите расширение в "Волшебной палочке"! 🪄</li>
+                        </ul>
+                        
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <a href="javascript:void(0)" class="btn btn-primary cadis-copy-btn" data-clipboard-text="https://github.com/ann22cadis/dreamalbum-extension" style="width: 100%;">Скопировать ссылку для установки</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-buttons">
+                    <a href="javascript:void(0)" class="btn btn-small btn-primary cadis-copy-btn" data-clipboard-text="https://github.com/ann22cadis/dreamalbum-extension">Копировать ссылку</a>
+                    <a href="javascript:void(0)" class="btn btn-small btn-primary toggle-details-btn" data-target="dreamalbum-details">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="card glass" style="opacity: 0.6; pointer-events: none;">
+                <h3 style="color: var(--text-muted);">Секретный Проект</h3>
+                <p>Третье расширение уже находится в разработке. Заглядывайте сюда позже! ✨</p>
+                <div class="card-buttons">
+                    <a class="btn btn-small" style="border-color: rgba(166, 155, 163, 0.3); color: var(--text-muted);">Скоро будет...</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Cadis</div>
+            <div class="social-links">
+                <a href="https://t.me/cadis_ai" target="_blank">Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast">Скопировано в буфер обмена!</div>
+    
+    <!-- Модальное окно для деталей расширения -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content glass">
+            <button id="modal-close" class="modal-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

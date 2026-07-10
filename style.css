@@ -1,0 +1,1231 @@
+/* ===== ШРИФТЫ ===== */
+@font-face {
+    font-family: 'CadisFont';
+    src: url('img/cadis-logo-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ===== ПЕРЕМЕННЫЕ (Цветовая палитра "Mystic Dark" для Cadis) ===== */
+:root {
+    --bg-color: #07050a; /* Очень темный, почти черный фон с легким фиолетовым отливом */
+    --text-color: #ece6ea; /* Светло-серый, почти белый текст */
+    --text-muted: #a69ba3; /* Приглушенный текст */
+    
+    --accent-pink: #d97bb5; /* Магический розовый (как свечение на картинке) */
+    --accent-silver: #d0c8be; /* Светлое серебро/бледное золото */
+    
+    --glass-bg: rgba(20, 15, 25, 0.65); /* Темное стекло */
+    --glass-border: rgba(217, 123, 181, 0.15); /* Розоватая граница для карточек */
+    --glass-shadow: 0 10px 40px rgba(217, 123, 181, 0.08); /* Легкое розовое свечение */
+    
+    --font-heading: 'Cinzel', serif; /* Элегантный шрифт для заголовков */
+    --font-body: 'Inter', sans-serif; /* Чистый шрифт для чтения */
+    
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ===== БАЗОВЫЕ НАСТРОЙКИ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, textarea {
+    outline: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== КАСТОМНЫЙ СКРОЛЛБАР ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color); 
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(217, 123, 181, 0.3); 
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 123, 181, 0.6); 
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Легкий фоновый градиент для создания атмосферы космоса/воды с бликами */
+    background-image: 
+        radial-gradient(at 20% 0%, rgba(217, 123, 181, 0.08) 0px, transparent 40%),
+        radial-gradient(at 80% 100%, rgba(208, 200, 190, 0.05) 0px, transparent 40%);
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4, .logo {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+header {
+    position: absolute; /* Теперь шапка не прилипает, а скроллится вместе со страницей */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'CadisFont', var(--font-heading);
+    font-size: 2.8rem; /* Рукописные шрифты обычно требуют большего размера */
+    font-weight: normal;
+    letter-spacing: 2px;
+    color: var(--accent-silver);
+    text-shadow: 0 0 10px rgba(208, 200, 190, 0.3);
+}
+
+header .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ===== КНОПКА НАЗАД ===== */
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition);
+    background: rgba(20, 15, 25, 0.5);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(217, 123, 181, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    color: var(--text-color);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 15px rgba(217, 123, 181, 0.3);
+    transform: translateX(-5px);
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-align: center;
+}
+
+.btn:focus, .btn:active {
+    outline: none;
+}
+
+.btn-primary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--accent-pink);
+    box-shadow: 0 0 15px rgba(217, 123, 181, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-pink);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(217, 123, 181, 0.4);
+}
+
+.btn-outline {
+    background-color: rgba(7, 5, 10, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-color);
+    border: 1px solid rgba(217, 123, 181, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(217, 123, 181, 0.2);
+}
+
+.btn-outline:hover {
+    color: var(--text-color);
+    background: rgba(217, 123, 181, 0.25);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 20px rgba(217, 123, 181, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(217, 123, 181, 0.3);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 20px;
+}
+
+.btn-small:hover {
+    background: rgba(217, 123, 181, 0.1);
+    color: var(--text-color);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 15px rgba(217, 123, 181, 0.2);
+}
+
+/* ===== ГЛАВНЫЙ ЭКРАН (Новый дизайн) ===== */
+.split-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 5% 0; /* Отступ под шапку */
+    gap: 2rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+    background: linear-gradient(to right, rgba(7, 5, 10, 0.95) 0%, rgba(7, 5, 10, 0.6) 40%, rgba(7, 5, 10, 0.1) 100%),
+                url('img/index/hero-bg.jpg') center/cover no-repeat;
+}
+
+.split-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to top, var(--bg-color) 0%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* МАГИЧЕСКАЯ ПЫЛЬЦА */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Под основным контентом */
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    bottom: -10px;
+    background-color: var(--accent-pink);
+    border-radius: 50%;
+    box-shadow: 0 0 12px 3px rgba(217, 123, 181, 0.8), 0 0 20px 5px rgba(208, 200, 190, 0.4);
+    opacity: 0;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) translateX(60px) scale(0.5); opacity: 0; }
+}
+
+.hero-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Прижимаем кнопки к центру экрана */
+    z-index: 2;
+    padding-right: 2rem;
+}
+
+.card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+.card-buttons .btn {
+    width: 100%;
+}
+
+/* ===== МОДАЛЬНОЕ ОКНО ДЛЯ РАСШИРЕНИЙ ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior: contain;
+    background: rgba(5, 3, 8, 0.85); /* Более темный фон, чтобы меньше зависеть от блюра */
+    backdrop-filter: blur(2px); /* Сильно уменьшен блюр */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: #100c14 !important; /* Сплошной темный цвет, важнее чем .glass */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 2.5rem 0 2.5rem 2.5rem !important; /* Правый отступ 0, чтобы скроллбар прижался к краю */
+    border-radius: 16px;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    background: rgba(15, 10, 20, 0.8);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0;
+    z-index: 100;
+}
+
+.modal-close:hover {
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 10px rgba(217, 123, 181, 0.3);
+}
+
+/* Скрываем контент внутри карточек */
+.extension-details {
+    display: none;
+}
+
+#modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    padding-right: 2.5rem; /* Отступ текста от скроллбара, симметричный левому */
+    max-height: calc(85vh - 5rem); /* Чтобы скроллилось именно тело, а не модалка */
+}
+
+
+
+
+
+.extension-img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.dreamweaver-img {
+    max-width: 420px; /* Сужаем только вертикальную картинку Dreamweaver */
+    margin: 0 auto;
+    display: block;
+}
+
+.extension-text {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.extension-text p {
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+}
+
+.extension-text h4 {
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-pink);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.extension-text ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+.extension-text ul li {
+    margin-bottom: 0.4rem;
+}
+
+.extension-text ul li strong {
+    color: var(--accent-silver);
+    font-weight: 500;
+}
+
+.features-list {
+    list-style-type: none !important;
+    margin-left: 0 !important;
+}
+
+.features-list li {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+}
+
+.features-list li span {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 320px; /* Ширина кнопок */
+}
+
+.vertical-buttons .btn {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}
+
+.hero-right {
+    flex: 1.2; /* Картинка занимает чуть больше места */
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.floating-avatar {
+    max-width: 120%; /* Позволяем картинке выходить за пределы немного */
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(217, 123, 181, 0.2));
+    transform: translateX(-15%); /* Сдвигаем влево для нахлеста */
+    pointer-events: none; /* Чтобы картинка не перекрывала клики по кнопкам */
+    position: relative;
+    z-index: 10; /* Аватар поверх коллажа */
+}
+
+/* ===== КОЛЛАЖ (ПОЛАРОИДЫ) ===== */
+.collage-container {
+    position: absolute;
+    top: 50%;
+    left: 40%; /* Слегка смещен влево, как и аватар */
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 600px;
+    z-index: 0;
+    pointer-events: none; /* Коллаж не должен перекрывать мышь */
+}
+
+.polaroid {
+    position: absolute;
+    background: #fcfcfc; /* Белый цвет с легкой теплотой */
+    padding: 12px 12px 45px 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 25px rgba(217, 123, 181, 0.15);
+    border-radius: 3px;
+    width: 220px;
+}
+
+.polaroid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Раскидываем карточки "веером" */
+.p-1 { top: 5%; left: 0%; transform: rotate(-15deg); z-index: 1; }
+.p-2 { top: 0%; right: 5%; transform: rotate(18deg); z-index: 2; }
+.p-3 { bottom: 5%; left: -10%; transform: rotate(-22deg); z-index: 3; }
+.p-4 { bottom: 15%; right: -15%; transform: rotate(25deg); z-index: 4; }
+.p-5 { top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(5deg); z-index: 5; }
+
+@keyframes float {
+    0% { transform: translateY(0px) translateX(-15%); }
+    50% { transform: translateY(-15px) translateX(-15%); }
+    100% { transform: translateY(0px) translateX(-15%); }
+}
+
+/* ===== ОБЩИЕ СТИЛИ СЕКЦИЙ ===== */
+.section {
+    padding: 6rem 10%;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(217, 123, 181, 0.3);
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background-color: var(--accent-pink);
+    box-shadow: 0 0 10px var(--accent-pink);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+}
+
+.page-section {
+    padding-top: 80px; /* Отступ для фиксированного хедера на внутренних страницах */
+}
+
+/* Сетки (Grid) */
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.extensions-grid, .prompts-grid, .styles-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* ===== КАРТОЧКИ (Glassmorphism) ===== */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: var(--transition);
+}
+
+.glass:hover {
+    transform: translateY(-5px);
+    border-color: rgba(217, 123, 181, 0.4);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px rgba(217, 123, 181, 0.1);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.card p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Карточки промптов */
+.prompt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    color: var(--accent-pink);
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px var(--accent-pink));
+}
+
+.prompt-content {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #c9c1c6;
+    border: 1px solid rgba(255,255,255,0.05);
+    white-space: pre-wrap; /* Сохраняет абзацы и переносы строк */
+}
+
+/* Кастомный скроллбар */
+.prompt-content::-webkit-scrollbar {
+    width: 4px;
+}
+.prompt-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+}
+.prompt-content::-webkit-scrollbar-thumb {
+    background-color: rgba(217, 123, 181, 0.3);
+    border-radius: 10px;
+}
+.prompt-content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-pink);
+}
+
+/* Карточки стилей */
+.style-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; /* Уменьшен отступ для мобильных */
+    gap: 1rem;
+}
+
+.style-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.placeholder-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Карусель картинок в стилях */
+.style-carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4; /* Сохраняем пропорции контейнера */
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    border-radius: 16px;
+}
+.style-carousel::-webkit-scrollbar {
+    display: none; /* Safari и Chrome */
+}
+
+.carousel-img {
+    flex: 0 0 100%;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+    scroll-snap-align: center;
+    scroll-snap-stop: always; /* Force snap to each image */
+    cursor: pointer;
+    border-radius: 16px;
+    transition: filter 0.3s ease;
+}
+
+.carousel-img:hover {
+    filter: brightness(1.1);
+}
+
+.style-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 65px;
+    height: 65px;
+    background: var(--accent-pink); /* Яркий розовый уголок */
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    z-index: 10;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    pointer-events: none;
+    /* Позиционирование цифры */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 8px;
+    padding-left: 14px;
+    box-sizing: border-box;
+    /* Тень на текст для контраста */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Пагинация карусели */
+.carousel-pagination {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 10;
+    pointer-events: none;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    transition: var(--transition);
+}
+.carousel-dot.active {
+    background: var(--accent-pink);
+    transform: scale(1.3);
+    box-shadow: 0 0 8px var(--accent-pink);
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 10, 20, 0.7);
+    color: white;
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+}
+.gallery-nav:hover {
+    background: var(--accent-pink);
+}
+.gallery-nav.prev { left: 10px; }
+.gallery-nav.next { right: 10px; }
+
+.style-prompt {
+    margin-bottom: 1rem;
+    max-height: 100px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: rgba(7, 5, 10, 0.8);
+    border-top: 1px solid rgba(217, 123, 181, 0.1);
+    padding: 3rem 10%;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer-content .logo {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--accent-pink);
+    text-shadow: 0 0 10px rgba(217, 123, 181, 0.5);
+}
+
+/* ===== TOAST УВЕДОМЛЕНИЕ ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150px);
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(20, 15, 25, 0.9);
+    border: 1px solid var(--accent-pink);
+    color: var(--text-color);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(217, 123, 181, 0.2);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.prompt-counter {
+    font-size: 1rem;
+    color: var(--accent-pink);
+    background: rgba(217, 123, 181, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin-left: 15px;
+    font-family: var(--font-body);
+    font-weight: normal;
+    border: 1px solid rgba(217, 123, 181, 0.3);
+    display: inline-block;
+}
+
+/* ===== ГАЛЕРЕЯ ПРОМПТОВ ===== */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(20, 15, 25, 0.5);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: rgba(217, 123, 181, 0.15);
+    color: var(--text-color);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 10px rgba(217, 123, 181, 0.2);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item.hidden {
+    display: none;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 20px rgba(217, 123, 181, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+}
+
+/* ===== СТИЛИ ДЛЯ КОЛЛЕКЦИЙ ===== */
+.collection-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 1rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    pointer-events: none; /* Пропускаем клик на карточку */
+}
+
+.collection-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(217, 123, 181, 0.8);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.collection-title {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.collection-desc {
+    color: var(--accent-pink);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* МОДАЛЬНОЕ ОКНО ДЛЯ ПРОМПТОВ */
+.prompt-modal-content {
+    max-width: 1000px;
+    width: 95%;
+    padding: 3rem 0 2rem 2.5rem; /* Правый отступ 0, чтобы скроллбар прижимался к краю */
+    overflow: hidden; /* Скрываем общий скролл контейнера */
+}
+
+.prompt-modal-body {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch; /* Растягиваем колонку с картинкой на всю высоту текста */
+    overflow-y: hidden; /* Отключаем общий скролл */
+    max-height: calc(90vh - 5rem);
+    padding-right: 0;
+}
+
+.modal-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background: rgba(217, 123, 181, 0.2);
+    color: #fff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(217, 123, 181, 0.3);
+    display: inline-block;
+}
+
+.modal-model-badge {
+    color: var(--accent-pink);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    margin-right: 0.5rem;
+}
+
+.prompt-modal-image-container {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем по горизонтали */
+    justify-content: center; /* Центрируем по вертикали */
+    position: relative; /* Липкость больше не нужна, так как скроллится только текст */
+    top: auto;
+}
+
+.prompt-modal-image-container img {
+    max-width: 100%;
+    max-height: calc(90vh - 5rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px; /* Скругляем саму картинку */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Тень вокруг самой картинки */
+    display: block;
+    margin: 0 auto; /* Дополнительная гарантия центрирования */
+}
+
+.prompt-modal-text-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Скроллится только колонка с текстом */
+    padding-right: 2.5rem; /* Отступ для контента от скроллбара, симметричный левому */
+}
+
+.prompt-text-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.prompt-fade {
+    display: none;
+}
+
+.toggle-text-btn {
+    display: none;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media screen and (max-width: 1024px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .prompt-modal-body {
+        flex-direction: column;
+        align-items: stretch;
+        overflow-y: auto; /* На телефоне возвращаем общий скролл */
+        padding-right: 2.5rem; /* Отступ для контента, чтобы скроллбар оставался у самого края */
+    }
+    
+    .prompt-modal-text-container {
+        overflow-y: visible; /* Отключаем скролл внутри текста */
+        padding-right: 0;
+    }
+    
+    .prompt-content {
+        max-height: none;
+    }
+    
+    .prompt-content.collapsed {
+        max-height: 120px;
+        overflow-y: hidden;
+    }
+    
+    .prompt-fade.active {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: linear-gradient(transparent, #100c14); /* Цвет фона модалки */
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+    
+    .prompt-text-wrapper.expanded .prompt-fade.active {
+        opacity: 0;
+    }
+    
+    .toggle-text-btn.active {
+        display: block;
+    }
+    
+    .prompt-modal-image-container {
+        width: 100%;
+        height: auto; /* Позволяем контейнеру обернуть картинку */
+        max-height: none;
+        flex: none; 
+        position: static; 
+        display: flex;
+        justify-content: center; /* Центрируем картинку по горизонтали */
+    }
+    
+    .prompt-modal-image-container img {
+        max-width: 100%;
+        max-height: 60vh; /* Увеличена картинка на мобилках */
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .gallery-nav {
+        display: none !important; /* Убираем стрелочки на телефоне */
+    }
+
+    .section {
+        padding: 4rem 5%;
+    }
+    
+    .page-section {
+        padding-top: 60px; /* Сильно поднимаем на мобильных */
+    }
+
+    /* Мобильный экран с новой картинкой */
+    .split-hero {
+        flex-direction: column-reverse; /* Картинка сверху, кнопки снизу */
+        padding-top: 100px;
+        padding-bottom: 40px;
+        gap: 1rem;
+    }
+    
+    .collage-container {
+        width: 500px;
+        height: 600px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.55);
+    }
+    
+    .vertical-buttons {
+        max-width: 85vw; /* Кнопки шире на телефоне */
+        gap: 0.6rem; /* Уменьшаем расстояние между 6 кнопками */
+    }
+    
+    .vertical-buttons .btn {
+        padding: 0.6rem 1rem; /* Делаем кнопки тоньше, чтобы влезли все 6 */
+        font-size: 1rem; /* Слегка уменьшаем шрифт */
+    }
+    
+    .hero-left {
+        padding-right: 0;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .hero-right {
+        justify-content: center;
+    }
+    
+    .floating-avatar {
+        max-width: 100%;
+        max-height: 40vh; /* Уменьшаем высоту, чтобы снизу влезли все 4 кнопки */
+        transform: none;
+    }
+    
+    .extensions-grid, .prompts-grid, .styles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem; /* Уменьшаем отступ между картинками на телефоне */
+    }
+}
+
+/* ===== СВЯЗАННЫЕ ПРОМПТЫ В МОДАЛКЕ ===== */
+.related-prompts-container {
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
+.related-title {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-heading);
+    opacity: 0.8;
+}
+.related-prompts-list {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+.related-item {
+    width: 60px;
+    height: 75px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.related-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 10px rgba(217, 123, 181, 0.4);
+}
+.related-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Анимация переключения контента в модальном окне */
+.prompt-modal-body {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.prompt-modal-body.prompt-modal-transition-fade {
+    opacity: 0;
+    transform: scale(0.99) translateY(4px);
+}
+
+
