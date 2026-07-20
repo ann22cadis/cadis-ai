@@ -676,7 +676,6 @@ header .logo {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     scrollbar-width: none; /* Firefox */
     border-radius: 16px;
 }
@@ -704,8 +703,8 @@ header .logo {
     position: absolute;
     top: 0;
     left: 0;
-    width: 65px;
-    height: 65px;
+    width: 75px;
+    height: 75px;
     background: var(--accent-pink); /* Яркий розовый уголок */
     color: #ffffff;
     font-size: 1.3rem;
@@ -718,8 +717,8 @@ header .logo {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    padding-top: 8px;
-    padding-left: 14px;
+    padding-top: 6px;
+    padding-left: 10px;
     box-sizing: border-box;
     /* Тень на текст для контраста */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -891,6 +890,8 @@ footer {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .gallery-item.hidden {
@@ -908,6 +909,7 @@ footer {
     object-fit: cover;
     transition: transform 0.5s ease, filter 0.3s ease;
     cursor: pointer;
+    display: block;
 }
 
 .gallery-item:hover img {
@@ -1227,5 +1229,4 @@ footer {
     opacity: 0;
     transform: scale(0.99) translateY(4px);
 }
-
 

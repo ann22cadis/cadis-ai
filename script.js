@@ -423,6 +423,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Запускаем подсчет при инициализации
         calculateTotalPrompts();
+        
+        // Открытие промпта по хешу из URL
+        if (window.location.hash) {
+            const hashId = window.location.hash.substring(1);
+            const targetItem = document.getElementById(hashId);
+            if (targetItem && targetItem.classList.contains('gallery-item')) {
+                setTimeout(() => {
+                    targetItem.click();
+                    // Скроллим к элементу для удобства
+                    targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 150);
+            }
+        }
     }
 
     // Обработчик кнопки развертывания текста промпта
@@ -445,5 +458,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // Логика копирования оверлеев с карточки
+    const copyOverlayBtns = document.querySelectorAll('.copy-overlay-btn');
+    copyOverlayBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Чтобы не кликнулось на карточку, если кнопка вдруг перекрывает
+            const promptText = btn.getAttribute('data-prompt');
+            if (promptText) {
+                navigator.clipboard.writeText(promptText).then(() => {
+                    if (window.showToast) window.showToast();
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Скопировано! ✓';
+                    btn.style.backgroundColor = '#4CAF50';
+                    btn.style.borderColor = '#4CAF50';
+                    btn.style.color = 'white';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.backgroundColor = '';
+                        btn.style.borderColor = '';
+                        btn.style.color = '';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Ошибка копирования: ', err);
+                });
+            }
+        });
+    });
 
 });
