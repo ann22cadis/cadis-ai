@@ -906,6 +906,18 @@
     <div id="toast" class="toast">Скопировано в буфер обмена!</div>
     <script src="script.js"></script>
     <script>
+        function switchTab(tabId, btn) {
+            // Убираем active у всех кнопок
+            document.querySelectorAll('.filter-container .filter-btn').forEach(b => b.classList.remove('active'));
+            // Добавляем active нажатой
+            btn.classList.add('active');
+            
+            // Скрываем все табы
+            document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+            // Показываем нужный
+            document.getElementById(tabId).style.display = 'block';
+        }
+
         // Специальная логика для страницы стилей (открытие модалки)
         document.addEventListener('DOMContentLoaded', () => {
             const styleItems = document.querySelectorAll('.style-item-clickable');
