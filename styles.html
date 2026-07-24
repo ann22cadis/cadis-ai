@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стили | Cadis</title>
+    <title>Prompting | Cadis</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=19">
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -21,12 +21,13 @@
 
     <section id="styles" class="section page-section">
         <div class="section-header">
-            <h2>Стили и Оверлеи</h2>
+            <h2>Prompting</h2>
         </div>
 
         <div class="filter-container" style="margin-bottom: 2.5rem;">
             <button class="filter-btn active" onclick="switchTab('styles-tab', this)">Styles</button>
             <button class="filter-btn" onclick="switchTab('overlays-tab', this)">Overlays</button>
+            <button class="filter-btn" onclick="switchTab('color-tab', this)">Color</button>
         </div>
 
         <div id="styles-tab" class="tab-content" style="display: block;">
@@ -421,10 +422,10 @@
         
         <div id="overlays-tab" class="tab-content" style="display: none;">
             <div class="warning-banner glass" style="margin-bottom: 2rem; padding: 1.5rem; border-left: 4px solid var(--accent-pink); background: rgba(217, 123, 181, 0.05); display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="font-size: 1.5rem;">🚧</div>
+                <div style="font-size: 1.5rem;">🎲</div>
                 <div>
-                    <strong style="color: var(--accent-pink); display: block; margin-bottom: 0.5rem;">В разработке!</strong>
-                    <span style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Раздел оверлеев скоро пополнится потрясающими решениями. Возвращайтесь немного позже!</span>
+                    <strong style="color: var(--accent-pink); display: block; margin-bottom: 0.5rem;">Осторожно! Оверлеи живут своей жизнью.</strong>
+                    <span style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">Их стабильность сравнима с карточным домиком на ветру. Всё зависит от того, с какой ноги сегодня встала модель, как лягут звёзды, и насколько точно вы составите свой промпт. В 90% случаев вы получите шедевр, а в оставшихся 10% — загадочное пятно Роршаха. Экспериментируйте на свой страх и риск!</span>
                 </div>
             </div>
             <div class="grid styles-grid" id="overlays-grid">
@@ -1018,6 +1019,172 @@
                         <button class="btn btn-primary copy-overlay-btn" data-prompt="OVERLAYS: superimposed over the image floating in the foreground, a small softly torn scrap of textured paper, lexicon entry typographic layout printed on the paper scrap, large bold serif heading word, phonetic pronunciation guide text, small block of descriptive paragraph text with numbered lists, softly torn edges, visible paper grain texture, semi-transparent paper seamlessly color-matched to the global palette, unified color grading, softly blended into the environmental lighting, digital scrapbooking collage aesthetic." style="width: 100%;">Скопировать промпт</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="color-tab" class="tab-content" style="display: none;">
+            <div class="grid styles-grid" id="color-grid">
+                
+                <!-- ЦВЕТ 1 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">1</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/1.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE WARM PEACH AND FADED VINTAGE PALETTE OVER THE ENTIRE IMAGE], superimposed over the entire image, warm peachy-orange vintage color grading, faded low contrast tint, lifted soft shadows, nostalgic faded aesthetic overlay, dreamy hazy atmosphere, warm ethereal glowing effect, soft diffused optical bloom, warm ambient light leaks, soft textured grain." alt="Цвет 1">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE WARM PEACH AND FADED VINTAGE PALETTE OVER THE ENTIRE IMAGE], superimposed over the entire image, warm peachy-orange vintage color grading, faded low contrast tint, lifted soft shadows, nostalgic faded aesthetic overlay, dreamy hazy atmosphere, warm ethereal glowing effect, soft diffused optical bloom, warm ambient light leaks, soft textured grain." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 2 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">2</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/2.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT MONOCHROMATIC DUSTY ROSE PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL OTHER COLORS], superimposed over the entire image, heavy monochromatic sepia-pink color filter, desaturated dusty rose tint, washed-out vintage color grading, unified mauve monochromatic overlay, soft pink color dodge highlights, subtle blue color burn shadows, digital blend mode color filter." alt="Цвет 2">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT MONOCHROMATIC DUSTY ROSE PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL OTHER COLORS], superimposed over the entire image, heavy monochromatic sepia-pink color filter, desaturated dusty rose tint, washed-out vintage color grading, unified mauve monochromatic overlay, soft pink color dodge highlights, subtle blue color burn shadows, digital blend mode color filter." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 3 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">3</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/3.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT MONOCHROMATIC ICY BLUE AND LAVENDER PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL OTHER COLORS], superimposed over the entire image, heavy monochromatic nocturnal blue color filter, frosty cool-toned tint, desaturated indigo and cyan color grading, unified ghostly moonlight overlay, soft lavender screen blend highlights, deep cyan color burn shadows, glowing linear dodge midtones, digital blend mode color filter." alt="Цвет 3">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT MONOCHROMATIC ICY BLUE AND LAVENDER PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL OTHER COLORS], superimposed over the entire image, heavy monochromatic nocturnal blue color filter, frosty cool-toned tint, desaturated indigo and cyan color grading, unified ghostly moonlight overlay, soft lavender screen blend highlights, deep cyan color burn shadows, glowing linear dodge midtones, digital blend mode color filter." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 4 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">4</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/4.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT HOT PINK AND PALE YELLOW DUOTONE PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL OTHER COLORS], superimposed over the entire image, vibrant magenta and cream duotone color filter, high-key overexposed lighting, neon pastel pop-art tint, unified pink risograph aesthetic overlay, pale yellow add blend highlights, intense salmon pink color burn shadows, harsh magenta hard mix edges, extreme pink saturation filter, digital blend mode color filter." alt="Цвет 4">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT HOT PINK AND PALE YELLOW DUOTONE PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL OTHER COLORS], superimposed over the entire image, vibrant magenta and cream duotone color filter, high-key overexposed lighting, neon pastel pop-art tint, unified pink risograph aesthetic overlay, pale yellow add blend highlights, intense salmon pink color burn shadows, harsh magenta hard mix edges, extreme pink saturation filter, digital blend mode color filter." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 5 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">5</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/5.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT FADED MILKY GREY AND PALE PINK PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL VIBRANT COLORS], superimposed over the entire image, heavy faded milky color filter, desaturated pale pink and grey tint, washed-out low contrast color grading, lifted faded shadows, unified dreamy soft grunge overlay, extreme soft focus bloom, glowing halation, pro-mist optical diffusion filter effect, subtle photographic film grain." alt="Цвет 5">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT FADED MILKY GREY AND PALE PINK PALETTE OVER THE ENTIRE IMAGE, IGNORING ALL VIBRANT COLORS], superimposed over the entire image, heavy faded milky color filter, desaturated pale pink and grey tint, washed-out low contrast color grading, lifted faded shadows, unified dreamy soft grunge overlay, extreme soft focus bloom, glowing halation, pro-mist optical diffusion filter effect, subtle photographic film grain." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 6 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">6</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/6.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE WARM SUN-DRENCHED VINTAGE GLOW AND FADED OLIVE PALETTE OVER THE ENTIRE IMAGE], superimposed over the entire image, dreamy vintage film color grading, warm yellowish-green tint, washed-out low contrast aesthetic, lifted milky shadows, faded olive green tones, overexposed blown-out highlights, extreme soft focus optical bloom, heavy glowing halation, ethereal light diffusion, dreamy hazy atmosphere, warm retro light leaks, subtle photographic film grain." alt="Цвет 6">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE WARM SUN-DRENCHED VINTAGE GLOW AND FADED OLIVE PALETTE OVER THE ENTIRE IMAGE], superimposed over the entire image, dreamy vintage film color grading, warm yellowish-green tint, washed-out low contrast aesthetic, lifted milky shadows, faded olive green tones, overexposed blown-out highlights, extreme soft focus optical bloom, heavy glowing halation, ethereal light diffusion, dreamy hazy atmosphere, warm retro light leaks, subtle photographic film grain." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 7 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">7</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/7.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT HIGH-KEY PALE CREAM AND CHERRY PINK DUOTONE OVER THE ENTIRE IMAGE], superimposed over the entire image, strawberry milk aesthetic filter, high-key pastel color grading, pure luminous cream tones, isolated cherry pink accents, bright airy atmosphere, delicate soft crimson duotone, unified clean pastel overlay, gentle light diffusion." alt="Цвет 7">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT HIGH-KEY PALE CREAM AND CHERRY PINK DUOTONE OVER THE ENTIRE IMAGE], superimposed over the entire image, strawberry milk aesthetic filter, high-key pastel color grading, pure luminous cream tones, isolated cherry pink accents, bright airy atmosphere, delicate soft crimson duotone, unified clean pastel overlay, gentle light diffusion." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 8 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">8</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/8.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT DARK GRUNGE AND MUTED BURGUNDY PALETTE OVER THE ENTIRE IMAGE], superimposed over the entire image, dark gothic grunge color grading, deep crushed blacks, desaturated pale ashy tint, isolated dark blood-red and burgundy accents, heavy black vignette, high contrast moody shadows, glowing overexposed highlights, retro halftone dot pattern overlay, subtle screen tone texture, soft optical bloom, dark coquette aesthetic." alt="Цвет 8">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT DARK GRUNGE AND MUTED BURGUNDY PALETTE OVER THE ENTIRE IMAGE], superimposed over the entire image, dark gothic grunge color grading, deep crushed blacks, desaturated pale ashy tint, isolated dark blood-red and burgundy accents, heavy black vignette, high contrast moody shadows, glowing overexposed highlights, retro halftone dot pattern overlay, subtle screen tone texture, soft optical bloom, dark coquette aesthetic." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 9 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">9</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/9.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT WARM BROWN AND MOCHA PALETTE OVER THE ENTIRE IMAGE, IGNORING COOL TONES], superimposed over the entire image, dark academia aesthetic filter, heavy vintage brown color grading, warm caramel and coffee tint, lifted chocolate matte shadows, faded earthy tones, creamy beige highlights, low contrast washed-out aesthetic, warm nostalgic atmosphere, heavy photographic film grain, analog noise, subtle warm optical diffusion." alt="Цвет 9">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT WARM BROWN AND MOCHA PALETTE OVER THE ENTIRE IMAGE, IGNORING COOL TONES], superimposed over the entire image, dark academia aesthetic filter, heavy vintage brown color grading, warm caramel and coffee tint, lifted chocolate matte shadows, faded earthy tones, creamy beige highlights, low contrast washed-out aesthetic, warm nostalgic atmosphere, heavy photographic film grain, analog noise, subtle warm optical diffusion." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
+                <!-- ЦВЕТ 10 -->
+                <div class="card glass style-card" style="padding: 0; overflow: hidden; position: relative;">
+                    <div class="style-badge">10</div>
+                    <div style="position: relative;">
+                        <div class="style-carousel">
+                            <img src="img/color/10.jpeg" class="carousel-img style-item-clickable active" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT HIGH CONTRAST BLACK AND WHITE PALETTE OVER THE ENTIRE IMAGE, REMOVING ALL COLORS], superimposed over the entire image, pure monochrome grayscale color grading, deep crushed blacks, glowing silver highlights, high contrast dark shadows, completely desaturated aesthetic, heavy diagonal scanline texture, retro halftone print pattern overlay, raw digital grunge filter, soft optical bloom on whites, dark vignette, CRT screen interference effect." alt="Цвет 10">
+                        </div>
+                        <div class="carousel-pagination" style="margin-bottom: 0.5rem;">
+                            <div class="carousel-dot active"></div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 1rem 1rem 1rem;">
+                        <button class="btn btn-primary copy-overlay-btn" data-prompt="COLOR: [CRITICAL OVERRIDE: ENFORCE STRICT HIGH CONTRAST BLACK AND WHITE PALETTE OVER THE ENTIRE IMAGE, REMOVING ALL COLORS], superimposed over the entire image, pure monochrome grayscale color grading, deep crushed blacks, glowing silver highlights, high contrast dark shadows, completely desaturated aesthetic, heavy diagonal scanline texture, retro halftone print pattern overlay, raw digital grunge filter, soft optical bloom on whites, dark vignette, CRT screen interference effect." style="width: 100%;">Скопировать промпт</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
