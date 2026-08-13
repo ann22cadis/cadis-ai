@@ -679,6 +679,9 @@ header .logo {
     scrollbar-width: none; /* Firefox */
     border-radius: 16px;
 }
+.text-carousel {
+    aspect-ratio: 4/3;
+}
 .style-carousel::-webkit-scrollbar {
     display: none; /* Safari и Chrome */
 }
@@ -1107,7 +1110,7 @@ footer {
     
     .prompt-modal-image-container img {
         max-width: 100%;
-        max-height: 60vh; /* Увеличена картинка на мобилках */
+        max-height: 35vh; /* Уменьшена картинка на мобилках чтобы влезали настройки */
         width: 100%;
         height: auto;
         object-fit: cover;
@@ -1228,5 +1231,178 @@ footer {
 .prompt-modal-body.prompt-modal-transition-fade {
     opacity: 0;
     transform: scale(0.99) translateY(4px);
+}
+
+/* ===== ФОРМА ГЕНЕРАЦИИ ТЕКСТА ===== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+.form-control:focus {
+    border-color: var(--accent-pink);
+    background: rgba(255, 255, 255, 0.08);
+}
+.text-generator-card {
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+    padding: 2.5rem;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+.color-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.color-picker {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+.color-picker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.color-picker::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+.select-wrapper {
+    position: relative;
+}
+.select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+/* ===== КАСТОМНЫЙ SELECT ===== */
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+.select-selected {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    user-select: none;
+}
+.select-selected::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    margin-top: -3px;
+}
+.custom-select:hover .select-selected {
+    background: rgba(255, 255, 255, 0.08);
+}
+.custom-select.active .select-selected {
+    border-color: var(--accent-pink);
+    background: rgba(255, 255, 255, 0.08);
+}
+.custom-select.active .select-selected::after {
+    transform: rotate(-135deg);
+    margin-top: 3px;
+    border-color: var(--accent-pink);
+}
+.select-items {
+    position: absolute;
+    background: #15111a; /* Темный фон под стать модалке */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    top: calc(100% + 5px); /* Небольшой отступ от кнопки */
+    left: 0;
+    right: 0;
+    z-index: 99;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: all 0.2s ease;
+}
+
+/* Открываем список "ПОЗИЦИЯ" вверх, чтобы он не обрезался скроллом контейнера */
+#custom-pos-select .select-items {
+    top: auto;
+    bottom: calc(100% + 5px);
+    transform: translateY(5px);
+}
+#custom-pos-select.active .select-items {
+    transform: translateY(0);
+}
+
+.custom-select.active .select-items {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.select-items div {
+    color: var(--text-color);
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+}
+.select-items div:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-pink);
+}
+
+@media (max-width: 768px) {
+    .text-generator-card {
+        padding: 1.2rem;
+    }
+    .form-row {
+        gap: 1rem;
+    }
+    .color-picker {
+        width: 40px;
+        height: 40px;
+    }
 }
 
