@@ -934,7 +934,9 @@ footer {
     pointer-events: none; /* Пропускаем клик на карточку */
 }
 
-.collection-badge {
+.collection-badge,
+.gacha-badge,
+.reference-badge {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -946,6 +948,8 @@ footer {
     font-weight: bold;
     backdrop-filter: blur(5px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10;
+    pointer-events: none;
 }
 
 .collection-title {
@@ -1038,6 +1042,112 @@ footer {
 .prompt-text-wrapper {
     position: relative;
     width: 100%;
+}
+
+/* Полноэкранный режим модалки (только картинка + кнопка снизу, без текста) */
+.modal-bottom-copy-wrapper {
+    display: none;
+}
+
+.prompt-modal-content.image-only-mode {
+    width: auto;
+    max-width: 96%; /* именно %, а не vw: vw включает ширину скроллбара и модалка вылезает за экран */
+    height: auto;
+    max-height: none;
+    padding: 3rem 1.25rem 1.25rem 1.25rem !important;
+}
+
+.prompt-modal-content.image-only-mode .prompt-modal-body {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-height: none;
+    width: auto;
+    gap: 0.75rem;
+    overflow: visible;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.prompt-modal-content.image-only-mode .prompt-modal-text-container {
+    display: none;
+}
+
+/* Фиксированное соотношение сторон (все картинки стилей 3:4) - размер бокса
+   не зависит от конкретной картинки, поэтому при пролистывании окно не прыгает */
+.prompt-modal-content.image-only-mode .prompt-modal-image-container {
+    flex: none;
+    width: auto;
+    height: 80vh;
+    max-width: 100%; /* если по ширине не влезает - ужимаем, высота пересчитается по aspect-ratio */
+    aspect-ratio: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prompt-modal-content.image-only-mode .prompt-modal-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.prompt-modal-content.image-only-mode .modal-bottom-copy-wrapper {
+    display: flex;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .prompt-modal-content.image-only-mode {
+        /* % от .modal-overlay (он ровно по видимой области), а не vw/vh:
+           vw включает скроллбар, vh скачет из-за адресной строки на телефоне */
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        padding: 3rem 1rem 1rem 1rem !important;
+        border-radius: 0 !important;
+        display: flex !important;
+    }
+
+    .prompt-modal-content.image-only-mode .prompt-modal-body {
+        height: 100% !important;
+        max-height: 100% !important;
+        justify-content: center !important;
+        /* старое мобильное правило вешает сюда padding-right: 2.5rem - из-за него
+           справа оставалось пустое поле в 40px */
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .prompt-modal-content.image-only-mode .prompt-modal-image-container {
+        position: relative !important;
+        flex: 1 !important;
+        height: auto !important;
+        max-height: 100% !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        aspect-ratio: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .prompt-modal-content.image-only-mode .prompt-modal-image-container img {
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .prompt-modal-content.image-only-mode .gallery-nav {
+        display: none !important;
+    }
 }
 
 .prompt-fade {

@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             'nano-pro': 'Nano Banana Pro',
                             'nano-lite': 'Nano Banana 2 Lite',
                             'meme': 'Meme',
+                            'gacha': 'Gacha',
                             'solo': 'Solo',
                             'duo': 'Duo',
                             'female': 'Female',
