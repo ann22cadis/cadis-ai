@@ -133,6 +133,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const promptModalText = document.getElementById('prompt-modal-text');
     const promptModalCopyBtn = document.getElementById('prompt-modal-copy-btn');
 
+    // Кнопка быстрого копирования прямо на карточке промпта
+    galleryItems.forEach(item => {
+        const text = item.getAttribute('data-prompt');
+        if (!text || item.hasAttribute('data-link')) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'card-copy-btn';
+        btn.textContent = 'Скопировать';
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+                btn.textContent = 'Скопировано ✓';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Скопировать';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => console.error('Ошибка копирования: ', err));
+        });
+        item.appendChild(btn);
+    });
+
     // Автоматическое присвоение data-id на основе имени файла картинки
     galleryItems.forEach(item => {
         if (!item.hasAttribute('data-id')) {
@@ -204,9 +227,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Открытие модалки промпта
     if (galleryItems.length > 0 && promptModalOverlay) {
+        let currentModalImages = [];
+        let currentModalImgIndex = 0;
+        const modalPrevBtn = document.getElementById('modal-prev-btn');
+        const modalNextBtn = document.getElementById('modal-next-btn');
+
+        const updateModalImage = () => {
+            if (currentModalImages.length > 0) {
+                promptModalImg.src = currentModalImages[currentModalImgIndex];
+                promptModalImg.style.display = 'block';
+                if (currentModalImages.length > 1) {
+                    if (modalPrevBtn) modalPrevBtn.style.display = 'flex';
+                    if (modalNextBtn) modalNextBtn.style.display = 'flex';
+                } else {
+                    if (modalPrevBtn) modalPrevBtn.style.display = 'none';
+                    if (modalNextBtn) modalNextBtn.style.display = 'none';
+                }
+            } else {
+                promptModalImg.style.display = 'none';
+                if (modalPrevBtn) modalPrevBtn.style.display = 'none';
+                if (modalNextBtn) modalNextBtn.style.display = 'none';
+            }
+        };
+
+        const showPrevModalImg = () => {
+            if (currentModalImages.length <= 1) return;
+            currentModalImgIndex = (currentModalImgIndex - 1 + currentModalImages.length) % currentModalImages.length;
+            updateModalImage();
+        };
+
+        const showNextModalImg = () => {
+            if (currentModalImages.length <= 1) return;
+            currentModalImgIndex = (currentModalImgIndex + 1) % currentModalImages.length;
+            updateModalImage();
+        };
+
+        if (modalPrevBtn) modalPrevBtn.addEventListener('click', showPrevModalImg);
+        if (modalNextBtn) modalNextBtn.addEventListener('click', showNextModalImg);
+
+        // Клавиатурные стрелки при открытой модалке
+        document.addEventListener('keydown', (e) => {
+            if (promptModalOverlay.classList.contains('active') && currentModalImages.length > 1) {
+                if (e.key === 'ArrowLeft') showPrevModalImg();
+                if (e.key === 'ArrowRight') showNextModalImg();
+            }
+        });
+
+        // Свайпы на мобильных в модалке
+        let modalTouchStartX = 0;
+        let modalTouchEndX = 0;
+        const modalImgContainer = document.querySelector('.prompt-modal-image-container');
+        if (modalImgContainer) {
+            modalImgContainer.addEventListener('touchstart', e => {
+                modalTouchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+            modalImgContainer.addEventListener('touchend', e => {
+                modalTouchEndX = e.changedTouches[0].screenX;
+                if (modalTouchStartX - modalTouchEndX > 50) showNextModalImg();
+                if (modalTouchEndX - modalTouchStartX > 50) showPrevModalImg();
+            }, {passive: true});
+        }
+
         galleryItems.forEach(item => {
             const openModal = () => {
                 const img = item.querySelector('img');
+                const imagesAttr = item.getAttribute('data-images');
+                if (imagesAttr) {
+                    currentModalImages = imagesAttr.split(',').map(s => s.trim()).filter(Boolean);
+                    currentModalImgIndex = 0;
+                } else if (img) {
+                    currentModalImages = [img.src];
+                    currentModalImgIndex = 0;
+                } else {
+                    currentModalImages = [];
+                    currentModalImgIndex = 0;
+                }
+
                 const promptText = item.getAttribute('data-prompt') || '';
                 const tags = item.getAttribute('data-tags') ? item.getAttribute('data-tags').split(' ') : [];
                 const note = item.getAttribute('data-note') || '';
@@ -257,12 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         metaContainer.innerHTML = metaHTML;
                     }
 
-                    if (img) {
-                        promptModalImg.src = img.src;
-                        promptModalImg.style.display = 'block';
-                    } else {
-                        promptModalImg.style.display = 'none';
-                    }
+                    updateModalImage();
 
                     promptModalText.textContent = promptText;
                     
@@ -459,6 +550,74 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Инициализация каруселей прокрутки картинок в карточках (на странице промптов и других)
+    const promptCarousels = document.querySelectorAll('.gallery-item .style-carousel');
+    promptCarousels.forEach(carousel => {
+        const dotsContainer = carousel.nextElementSibling;
+        const dots = dotsContainer && dotsContainer.classList.contains('carousel-pagination') ? 
+                     dotsContainer.querySelectorAll('.carousel-dot') : [];
+        
+        carousel.addEventListener('scroll', () => {
+            if (dots.length > 0) {
+                const scrollPosition = carousel.scrollLeft;
+                const itemWidth = carousel.clientWidth;
+                const activeIndex = Math.round(scrollPosition / itemWidth);
+                dots.forEach(d => d.classList.remove('active'));
+                if (dots[activeIndex]) {
+                    dots[activeIndex].classList.add('active');
+                }
+            }
+        }, { passive: true });
+        
+        // Drag-to-scroll для мыши
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let hasDragged = false;
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            hasDragged = false;
+            carousel.style.cursor = 'grabbing';
+            carousel.style.scrollSnapType = 'none';
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.style.cursor = '';
+            carousel.style.scrollSnapType = '';
+        });
+
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.style.cursor = '';
+            carousel.style.scrollSnapType = '';
+            requestAnimationFrame(() => {
+                if (carousel.scrollLeft !== scrollLeft) {
+                    carousel.scrollLeft += (carousel.scrollLeft > scrollLeft ? 1 : -1);
+                }
+            });
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            hasDragged = true;
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Предотвращаем клик открытия модалки, если пользователь перетаскивал картинки мышью
+        carousel.addEventListener('click', (e) => {
+            if (hasDragged) {
+                e.stopPropagation();
+            }
+        }, true);
+    });
     // Логика копирования оверлеев с карточки
     const copyOverlayBtns = document.querySelectorAll('.copy-overlay-btn');
     copyOverlayBtns.forEach(btn => {
